@@ -34,8 +34,8 @@ describe('Intermediate challenge questions from https://performancejs.com/post/h
         expect(Intermediate.intersection([1, 5, 4, 2], [7, 12])).toEqual([]);
     });
 
-    it('sorts the array'), function () {
+    it('sorts the array', function () {
         expect(Intermediate.sort([])).toEqual([]);
-        sort([-4, 1, Infinity, 3, 3, 0]).toEqual([-4, 0, 1, 3, 3, Infinity]);
-    }
+        expect(Intermediate.sort([-4, 1, Infinity, 3, 3, 0])).toEqual([-4, 0, 1, 3, 3, Infinity]);
+    });
 });

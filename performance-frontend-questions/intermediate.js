@@ -75,8 +75,34 @@ class Intermediate {
         return result;
     }
 
+    //merge sort : [easie|b]est sort
     static sort(arr) {
+        if(arr.length <= 1) {
+            return arr;
+        }
 
+        let firstHalf = arr.slice(0, Math.floor(arr.length / 2));
+        let secondHalf = arr.slice(Math.floor(arr.length / 2), arr.length);
+
+        firstHalf = this.sort(firstHalf);
+        secondHalf = this.sort(secondHalf);
+
+        let index1 = 0, index2 = 0;
+        let result = [];
+        while(index1 < firstHalf.length && index2 < secondHalf.length) {
+            if(firstHalf[index1] < secondHalf[index2]) {
+                result.push(firstHalf[index1++]);
+            } else {
+                result.push(secondHalf[index2++]);
+            }
+        }
+        if(index1 < firstHalf.length) {
+            result = result.concat(firstHalf.slice(index1, firstHalf.length));
+        } else {
+            result = result.concat(secondHalf.slice(index2, secondHalf.length));
+        }
+
+        return result;
     }
 
 }
