@@ -105,6 +105,21 @@ class Intermediate {
         return result;
     }
 
+    static includes(arr, val) {
+        let index;
+        while(arr.length > 0) {
+            index = Math.floor(arr.length / 2);
+            if (val === arr[index]) {
+                return true;
+            } else if (val < arr[index]) {
+                arr = arr.slice(0, Math.floor(arr.length / 2));
+            } else if (val > arr[index]) {
+                arr = arr.slice(Math.floor(arr.length / 2) + 1, arr.length);
+            }
+        }
+        return false;
+    }
+
 }
 
 module.exports = Intermediate;

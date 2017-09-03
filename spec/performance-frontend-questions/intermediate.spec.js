@@ -38,4 +38,10 @@ describe('Intermediate challenge questions from https://performancejs.com/post/h
         expect(Intermediate.sort([])).toEqual([]);
         expect(Intermediate.sort([-4, 1, Infinity, 3, 3, 0])).toEqual([-4, 0, 1, 3, 3, Infinity]);
     });
+
+    it('binary searches for an element\'s existence in an array', function () {
+        expect(Intermediate.includes([1, 3, 8, 10], 8)).toEqual(true);
+        expect(Intermediate.includes([1, 3, 8, 8, 15], 15)).toEqual(true);
+        expect(Intermediate.includes([1, 3, 8, 10, 15], 9)).toEqual(false);
+    });
 });
