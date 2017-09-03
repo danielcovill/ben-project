@@ -44,4 +44,11 @@ describe('Intermediate challenge questions from https://performancejs.com/post/h
         expect(Intermediate.includes([1, 3, 8, 8, 15], 15)).toEqual(true);
         expect(Intermediate.includes([1, 3, 8, 10, 15], 9)).toEqual(false);
     });
+
+    it('merges objects deeply', function () {
+        expect(Intermediate.assignDeep({ a: 1 }, {})).toEqual({ a: 1 });
+        expect(Intermediate.assignDeep({ a: 1 }, { a: 2 })).toEqual({ a: 2 });
+        expect(Intermediate.assignDeep({ a: 1 }, { a: { b: 2 } })).toEqual({ a: { b: 2 } });
+        expect(Intermediate.assignDeep({ a: { b: { c: 1 }}}, { a: { b: { d: 2 }}, e: 3 })).toEqual({ a: { b: { c: 1, d: 2 }}, e: 3 });
+    });
 });

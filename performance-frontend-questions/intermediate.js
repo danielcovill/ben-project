@@ -105,6 +105,7 @@ class Intermediate {
         return result;
     }
 
+    //should do this in a non-destructive manner with indexes
     static includes(arr, val) {
         let index;
         while(arr.length > 0) {
@@ -113,11 +114,26 @@ class Intermediate {
                 return true;
             } else if (val < arr[index]) {
                 arr = arr.slice(0, Math.floor(arr.length / 2));
-            } else if (val > arr[index]) {
+            } else {
                 arr = arr.slice(Math.floor(arr.length / 2) + 1, arr.length);
             }
         }
         return false;
+    }
+
+    // For the sake of simplicity, you can assume that objects can contain only numbers and other objects (and not arrays, functions, etc.).
+    static assignDeep(val1, val2) {
+        for(let key in val2) {
+            if(!val2.hasOwnProperty(key)) {
+                continue;
+            }
+            if(val1[key] && typeof(val1[key]) === 'object') {
+                val1[key] == this.assignDeep(val1[key], val2[key]);
+            } else {
+                val1[key] = val2[key];
+            }
+        }
+        return val1;
     }
 
 }
