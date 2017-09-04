@@ -64,6 +64,17 @@ describe('Intermediate challenge questions from https://performancejs.com/post/h
 
         let result2 = await Intermediate.reduceAsync([a, c, b], (acc, value) => [...acc, value], ['d']);
         expect(result2).toEqual(['d', 'a', 'c', 'b']);
+    });
 
+    it('takes an array of functions that return promises, and resolves them one after the other', async () => {
+        let a = () => Promise.resolve('a');
+        let b = () => Promise.resolve('b');
+        let c = () => Promise.resolve('c');
+
+        let result = await Intermediate.seq([a, b, c]);
+        expect(result).toEqual(['a', 'b', 'c']);
+
+        let result2 = await Intermediate.seq([a, c, b]);
+        expect(result2).toEqual(['a', 'c', 'b']);
     });
 });

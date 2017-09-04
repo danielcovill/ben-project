@@ -146,6 +146,14 @@ class Intermediate {
         return val;
     }
 
+    static async seq(arr) {
+        let result = [];
+        for(let item of arr) {
+            result.push(await item());
+        }
+        return result;
+    }
+
 }
 
 module.exports = Intermediate;
