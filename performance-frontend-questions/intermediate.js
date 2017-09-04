@@ -136,6 +136,16 @@ class Intermediate {
         return val1;
     }
 
+    /// arr is an array of promises
+    /// func is the function to process
+    /// val is the start val to which the processed values from arr must be appended
+    static async reduceAsync(arr, func, val) {
+        for(let item of arr) {
+            val = func(val, await item());
+        }
+        return val;
+    }
+
 }
 
 module.exports = Intermediate;

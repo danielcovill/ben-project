@@ -51,4 +51,19 @@ describe('Intermediate challenge questions from https://performancejs.com/post/h
         expect(Intermediate.assignDeep({ a: 1 }, { a: { b: 2 } })).toEqual({ a: { b: 2 } });
         expect(Intermediate.assignDeep({ a: { b: { c: 1 }}}, { a: { b: { d: 2 }}, e: 3 })).toEqual({ a: { b: { c: 1, d: 2 }}, e: 3 });
     });
+
+    //Found this interesting 
+    //https://rainsoft.io/how-three-dots-changed-javascript/
+    it('implements an asynchronous reduce function', async () => {
+        let a = () => Promise.resolve('a');
+        let b = () => Promise.resolve('b');
+        let c = () => new Promise(resolve => setTimeout(() => resolve('c'), 100));
+
+        let result = await Intermediate.reduceAsync([a, b, c], (acc, value) => [...acc, value], []);
+        expect(result).toEqual(['a', 'b', 'c']);
+
+        let result2 = await Intermediate.reduceAsync([a, c, b], (acc, value) => [...acc, value], ['d']);
+        expect(result2).toEqual(['d', 'a', 'c', 'b']);
+
+    });
 });
